@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2><i class="fas fa-tire"></i> {{ title }}</h2>
+    
+    <form method="POST" class="form">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.vehicle_id.label }}
+            {{ form.vehicle_id(class="form-control") }}
+            {% for error in form.vehicle_id.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.brand.label }}
+                {{ form.brand(class="form-control") }}
+                {% for error in form.brand.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.size.label }}
+                {{ form.size(class="form-control") }}
+                {% for error in form.size.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.purchase_date.label }}
+                {{ form.purchase_date(class="form-control") }}
+                {% for error in form.purchase_date.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.expiry_date.label }}
+                {{ form.expiry_date(class="form-control") }}
+                {% for error in form.expiry_date.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('tyres') }}" class="btn secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

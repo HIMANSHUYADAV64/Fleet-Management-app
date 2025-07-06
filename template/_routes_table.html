@@ -1,0 +1,54 @@
+{% if routes %}
+    <table id="routes-table">
+        <thead>
+            <tr>
+                <th data-sort="rps_no">RPS No</th>
+                <th data-sort="vehicle_no">Vehicle</th>
+                <th data-sort="from_location">From</th>
+                <th data-sort="to_location">To</th>
+                <th data-sort="rps_closing_date">Closing Date</th>
+                <th data-sort="net_payment">Net Payment</th>
+                <th data-sort="payment_status">Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+                <tr>
+                    <td>{{ route.rps_no }}</td>
+                    <td>{{ route.vehicle.vehicle_no }}</td>
+                    <td>{{ route.from_location }}</td>
+                    <td>{{ route.to_location }}</td>
+                    <td>{{ route.rps_closing_date.strftime('%d %b %Y') }}</td>
+                    <td>{{ "%.2f"|format(route.net_payment) }}</td>
+                    <td>
+                        <span class="status {{ route.payment_status|lower }}">
+                            {{ route.payment_status }}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit_route', id=route.id) }}" class="btn-icon" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form action="{{ url_for('delete_route', id=route.id) }}" method="POST" class="inline-form">
+                            <button type="submit" class="btn-icon danger" 
+                                    onclick="return confirm('Are you sure you want to delete this route?')"
+                                    title="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="empty-state">
+        <i class="fas fa-route fa-3x"></i>
+        <h3>No Routes Found</h3>
+        <p>Add your first route to get started</p>
+        <a href="{{ url_for('add_route') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Route
+        </a>
+    </div>
+{% endif %}

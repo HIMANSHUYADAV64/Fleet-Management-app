@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h2><i class="fas fa-truck"></i> {{ title }}</h2>
+    
+    <form method="POST" class="form">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.vehicle_no.label }}
+                {{ form.vehicle_no(class="form-control") }}
+                {% for error in form.vehicle_no.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.registration_no.label }}
+                {{ form.registration_no(class="form-control") }}
+                {% for error in form.registration_no.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                {{ form.chassis_no.label }}
+                {{ form.chassis_no(class="form-control") }}
+                {% for error in form.chassis_no.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.driver_license.label }}
+                {{ form.driver_license(class="form-control") }}
+                {% for error in form.driver_license.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3>Insurance Details</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.insurance_issue_date.label }}
+                    {{ form.insurance_issue_date(class="form-control") }}
+                    {% for error in form.insurance_issue_date.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.insurance_expiry_date.label }}
+                    {{ form.insurance_expiry_date(class="form-control") }}
+                    {% for error in form.insurance_expiry_date.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3>Other Details</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.fitness_date.label }}
+                    {{ form.fitness_date(class="form-control") }}
+                    {% for error in form.fitness_date.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.service_date.label }}
+                    {{ form.service_date(class="form-control") }}
+                    {% for error in form.service_date.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="form-group">
+                {{ form.permit_expiry.label }}
+                {{ form.permit_expiry(class="form-control") }}
+                {% for error in form.permit_expiry.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('vehicles') }}" class="btn secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
