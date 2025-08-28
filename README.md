@@ -115,5 +115,4 @@ FleetPro/
 │── requirements.txt   # Backend dependencies
 │── package.json       # Frontend dependencies
 
-<img width="1913" height="907" alt="Screenshot 2025-07-11 132519" src="https://github.com/user-attachments/assets/dc7a79a9-2db8-45c9-b337-768dd78b7fb9" />
 
